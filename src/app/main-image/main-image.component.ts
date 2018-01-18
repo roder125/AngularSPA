@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-main-image',
@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainImageComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('mainImage') imageRef: ElementRef;
+
+  constructor() { 
+    
+  }
 
   ngOnInit() {
   }
 
+  
+  ngAfterViewInit(){
+    //console.log(document.getElementById('mainImage'));
+    var height = this.imageRef.nativeElement.offsetHeight;
+    console.log(height);
+  }
+
+  
 }
