@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import $ = require("jquery");
 
 @Component({
   selector: 'app-main-image',
@@ -7,20 +8,34 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class MainImageComponent implements OnInit {
 
-  @ViewChild('mainImage') imageRef: ElementRef;
+  //@Input() imgHeightEvent = new EventEmitter<number>();
+  @Output() imgHeightEvent : EventEmitter<number>;
+  height: number;
 
-  constructor() { 
-    
+  constructor(private el: ElementRef) {
+    this.imgHeightEvent = new EventEmitter<number>();
   }
 
   ngOnInit() {
+
   }
 
-  
   ngAfterViewInit(){
-    //console.log(document.getElementById('mainImage'));
-    var height = this.imageRef.nativeElement.offsetHeight;
-    console.log(height);
+
+    var _height;
+    $(document).ready(function() {
+      $("img").each(function() {
+          console.log("main Image C " + $(this).height());
+          _height =  $(this).height();
+          //console.log($(this).width());
+      });
+      console.log("Parameter: " + _height);  
+    });
+    this.imgHeightEvent.emit(_height);
+    console.log("_height " + _height)
+  }
+
+  ngAfterViewChecked(){
   }
 
   

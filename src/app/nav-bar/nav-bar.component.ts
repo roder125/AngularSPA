@@ -13,13 +13,14 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
   }
   
+  imgHeight: number;
 
   @HostListener("window:scroll", ['$event'])
   onWindowScroll($event) {
     //we'll do some stuff here when the window is scrolled
-    console.log($event.target.documentElement.scrollTop);
+    //console.log($event.target.documentElement.scrollTop);
     if($event.target.documentElement.scrollTop >= 930){
-      console.log("BildEnde erreicht")
+      //console.log("BildEnde erreicht")
     }
   }
 
