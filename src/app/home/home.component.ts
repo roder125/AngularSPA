@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
     $(document).ready(function() {
       $( "nav" ).addClass( "navbar-default");
       $("img").each(function() {
-        console.log("main Image height " + $(this).height());
         _height =  $(this).height();
         //console.log($(this).width());
       });
@@ -32,7 +31,6 @@ export class HomeComponent implements OnInit {
           //$('nav').css("background-color", "#fff");
           $( "nav" ).addClass( "navbar-inverse");
           $( "nav" ).removeClass( "navbar-default");
-          console.log("end of img")
         } else {
           //$('nav').css("background-color", "transparent");
           $( "nav" ).removeClass( "navbar-inverse");
@@ -47,7 +45,6 @@ export class HomeComponent implements OnInit {
         if(winHeight != $(window).height() || winWidth != $(window).width()){
           $( "nav" ).addClass( "navbar-default");
           $("img").each(function() {
-            console.log("main Image height " + $(this).height());
             _height =  $(this).height();
             //console.log($(this).width());
           });
@@ -56,7 +53,6 @@ export class HomeComponent implements OnInit {
               //$('nav').css("background-color", "#fff");
               $( "nav" ).addClass( "navbar-inverse");
               $( "nav" ).removeClass( "navbar-default");
-              console.log("end of img")
             } else {
               //$('nav').css("background-color", "transparent");
               $( "nav" ).removeClass( "navbar-inverse");
@@ -67,5 +63,22 @@ export class HomeComponent implements OnInit {
       });   
     });
   }
+
+  navClick(destination: string){
+    console.log("click " + destination)
+
+      // store hash
+      var dest = "#" + destination;
+		  var $root = $('html, body');
+
+      var href = "#" + destination;
+      $root.animate({
+        scrollTop: $(href).offset().top
+      }, 500, function () {
+        window.location.hash = href;
+      });
+			return false;
+  }
+  
   
 }
