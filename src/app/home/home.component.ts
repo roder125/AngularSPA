@@ -18,12 +18,11 @@ export class HomeComponent implements OnInit {
   navbarChange(){
     var _height;
     $(document).ready(function() {
-      //$('nav').css("background-color", "transparent");
       $( "nav" ).addClass( "navbar-default");
       $("img").each(function() {
-          console.log("main Image height " + $(this).height());
-           _height =  $(this).height();
-          //console.log($(this).width());
+        console.log("main Image height " + $(this).height());
+        _height =  $(this).height();
+        //console.log($(this).width());
       });
       $(window).scroll(function(){
         if ($(this).scrollTop() >= _height) {
@@ -37,7 +36,33 @@ export class HomeComponent implements OnInit {
           $( "nav" ).addClass( "navbar-default");          
         }
       });
-      console.log("Parameter: " + _height);
+      //$('nav').css("background-color", "transparent");
+      var winHeight  = $(window).height();     
+      var winWidth  = $(window).width();
+        $(window).resize(function() {
+          if(winHeight != $(window).height() || winWidth != $(window).width()){
+            $( "nav" ).addClass( "navbar-default");
+            $("img").each(function() {
+              console.log("main Image height " + $(this).height());
+              _height =  $(this).height();
+              //console.log($(this).width());
+            });
+            $(window).scroll(function(){
+              if ($(this).scrollTop() >= _height) {
+                //$('nav').css("background-color", "#fff");
+                $( "nav" ).addClass( "navbar-inverse");
+                $( "nav" ).removeClass( "navbar-default");
+                console.log("end of img")
+              } else {
+                //$('nav').css("background-color", "transparent");
+                $( "nav" ).removeClass( "navbar-inverse");
+                $( "nav" ).addClass( "navbar-default");          
+              }
+            });
+          }
+      });
+
+      
     });
   }
   
