@@ -8,13 +8,13 @@
            
                         <div class="md-form">
                             <label for="name" class="">Mountain Name</label>
-                            <input type="text" id="name" class="form-control" [(ngModel)]="mName"> 
+                            <input type="text" id="name" class="form-control" [(ngModel)]="mountain.name"> 
                         </div>
                         <div class="md-form">
                             <label for="name" class="">Mountain Height</label>
-                            <input type="text" id="name" class="form-control" [(ngModel)]="mHeight"> 
+                            <input type="text" id="name" class="form-control" [(ngModel)]="mountain.height"> 
                         </div>
-                        <button type="button" class="btn btn-success btn-lg btnSave">Save</button>
+                        <button type="button" class="btn btn-success btn-lg btnSave" (click)="save(mountain)">Save</button>
 
                     </div>
                 </div>

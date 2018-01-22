@@ -6,7 +6,7 @@ import * as firebase from 'firebase';
 @Injectable()
 export class FirebaseDatabaseService {
 
-    private mountainListRef$ = this.db.list<any>('animal-list');
+    private mountainListRef$ = this.db.list<any>('mountain-list');
 
     constructor(private db: AngularFireDatabase){
     }
@@ -15,9 +15,16 @@ export class FirebaseDatabaseService {
         return this.mountainListRef$;
     }
 
-    saveMountain(){
+    /**
+     * saves a mountain into the Database
+     * 
+     * 
+     * 
+     * @param mountain 
+     */
+    saveMountain(mountain){
         return this.mountainListRef$.push({
-            
+            mountain: mountain     
         });
     }
 }

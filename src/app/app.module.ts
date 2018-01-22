@@ -10,6 +10,7 @@ import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/dat
 import { AddMountainComponent } from './add-mountain/add-mountain.component';
 import { ShowMountainsComponent } from './show-mountains/show-mountains.component';
 import { FormsModule } from '@angular/forms';
+import { FirebaseDatabaseService } from './services/firebase.database.service/firebase.database.service';
 
 
 
@@ -27,7 +28,9 @@ import { FormsModule } from '@angular/forms';
     AngularFireDatabaseModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    FirebaseDatabaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
