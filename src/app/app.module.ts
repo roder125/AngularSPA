@@ -8,6 +8,8 @@ import { AngularFireModule } from "angularfire2";
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 import { AddMountainComponent } from './add-mountain/add-mountain.component';
+import { ShowMountainsComponent } from './show-mountains/show-mountains.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,13 +17,15 @@ import { AddMountainComponent } from './add-mountain/add-mountain.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    AddMountainComponent
+    AddMountainComponent,
+    ShowMountainsComponent,
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

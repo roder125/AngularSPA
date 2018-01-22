@@ -14,13 +14,13 @@
     <!-- Collection of nav links, forms, and other content for toggling -->
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
+            <li><a href="#" (click)='navClick("imageId")'>Home</a></li>
             <li><a href="#">Profile</a></li>
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">Mountains<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#" (click)='navClick("add")'>Add Mountain</a></li>
-                    <li><a href="#" (click)='navClick("add")'>Mountains</a></li>
+                    <li><a href="#" (click)='navClick("show")'>Mountains</a></li>
                     <li><a href="#" (click)='navClick("add")'>Fav</a></li>
                 </ul>
             </li>
@@ -52,6 +52,7 @@
     </div>
   </div>
 
+  <app-show-mountains id="show"></app-show-mountains>
   <app-add-mountain id="add"></app-add-mountain>
  
 
