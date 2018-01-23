@@ -8,7 +8,7 @@
                       
                             <label class="uploader">
                            
-                            <i class="icon icon-upload" 
+                            <i class="glyphicon glyphicon-plus"
                                 [style.color]="dragging 
                                     ? ((imageSrc.length > 0) ? overlayColor : activeColor)
                                     : ((imageSrc.length > 0) ? overlayColor : baseColor)"></i>
@@ -34,8 +34,9 @@
                                 <label for="name" class="">Mountain Height</label>
                                 <input type="text" id="name" class="form-control" [(ngModel)]="mountain.height"> 
                             </div>
-
-                            <button type="button" class="btn btn-success btn-lg btnSave" (click)="save(mountain)">Save</button>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-success btn-lg btnSave" (click)="save(mountain)">Save</button>
+                            </div>
                         
                         </div>
                     </div>

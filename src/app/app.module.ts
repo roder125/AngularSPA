@@ -11,6 +11,7 @@ import { AddMountainComponent } from './add-mountain/add-mountain.component';
 import { ShowMountainsComponent } from './show-mountains/show-mountains.component';
 import { FormsModule } from '@angular/forms';
 import { FirebaseDatabaseService } from './services/firebase.database.service/firebase.database.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -20,6 +21,7 @@ import { FirebaseDatabaseService } from './services/firebase.database.service/fi
     HomeComponent,
     AddMountainComponent,
     ShowMountainsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

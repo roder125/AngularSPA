@@ -1,9 +1,16 @@
 <div class="jumbotron jumbotron-fluid text-center" ><h1>Mountains</h1></div>
-<div class="jumbotron jumbotron-fluid text-center" >Test</div>
-<div class="jumbotron jumbotron-fluid text-center" >Test</div>
-<div class="jumbotron jumbotron-fluid text-center" >Test</div>
-<div class="jumbotron jumbotron-fluid text-center" >Test</div>
-<div class="jumbotron jumbotron-fluid text-center" >Test</div>
-<div class="jumbotron jumbotron-fluid text-center" >Test</div>
-<div class="jumbotron jumbotron-fluid text-center" >Test</div>
-<div class="jumbotron jumbotron-fluid text-center" >Test</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4" *ngFor="let mountain of mountainArray">
+            <div class="thumbnail show" >
+                <img class="img-responsive" src="{{mountain.mountain.imgUrl}}" alt="Mountain">
+                <div class="caption">
+                    <h2>{{mountain.mountain.name}}</h2>
+                    <p>{{mountain.mountain.height}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

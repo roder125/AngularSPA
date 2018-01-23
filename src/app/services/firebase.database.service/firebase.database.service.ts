@@ -27,4 +27,16 @@ export class FirebaseDatabaseService {
             mountain: mountain     
         });
     }
+
+    /**
+     * Fügt ein Bild in den Storage von Firebase ein und speicher die download Url
+     * @param result 
+     * @param name 
+     */
+    // https://angularfirebase.com/lessons/angular-file-uploads-to-firebase-storage/
+    pushImageUpload(image, name, date){
+        var images = image;
+        var storageRef$ = firebase.storage().ref(`pictures/${name}${date}/${name}`);
+        return storageRef$.put(image);
+    }
 }

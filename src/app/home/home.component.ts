@@ -9,7 +9,8 @@ import $ = require("jquery");
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+
+  constructor() {  }
 
   ngOnInit() {
     this.navbarChange() ;
@@ -22,15 +23,14 @@ export class HomeComponent implements OnInit {
     var _height;
     $(document).ready(function() {
       $( "nav" ).addClass( "navbar-default");
-      $("img").each(function() {
+      $("#imageId").each(function() {
         _height =  $(this).height();
-        //console.log($(this).width());
       });
       $(window).scroll(function(){
-        if ($(this).scrollTop() >= _height) {
+        if ($(this).scrollTop() >= _height - 10) {
           //$('nav').css("background-color", "#fff");
           $( "nav" ).addClass( "navbar-inverse");
-          $( "nav" ).removeClass( "navbar-default");
+          $( "nav" ).removeClass( "navbar-default");  
         } else {
           //$('nav').css("background-color", "transparent");
           $( "nav" ).removeClass( "navbar-inverse");
@@ -44,12 +44,11 @@ export class HomeComponent implements OnInit {
       $(window).resize(function() {
         if(winHeight != $(window).height() || winWidth != $(window).width()){
           $( "nav" ).addClass( "navbar-default");
-          $("img").each(function() {
+          $("#imageId").each(function() {
             _height =  $(this).height();
-            //console.log($(this).width());
           });
           $(window).scroll(function(){
-            if ($(this).scrollTop() >= _height) {
+            if ($(this).scrollTop() >= _height - 10) {
               //$('nav').css("background-color", "#fff");
               $( "nav" ).addClass( "navbar-inverse");
               $( "nav" ).removeClass( "navbar-default");
@@ -64,6 +63,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * Animation für das Navigieren in der Page
+   * @param destination 
+   */
   navClick(destination: string){
     console.log("click " + destination)
 
@@ -78,7 +81,5 @@ export class HomeComponent implements OnInit {
         window.location.hash = href;
       });
 			return false;
-  }
-  
-  
+  } 
 }

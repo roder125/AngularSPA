@@ -11,15 +11,11 @@ import { Component, OnInit } from '@angular/core';
 export class AddMountainComponent implements OnInit {
 
   mountain = {} as Mountain;
-  path: string;
-  activeColor: string = 'green';
-  baseColor: string = '#ccc';
-  overlayColor: string = 'rgba(255,255,255,0.5)';
-  
-  dragging: boolean = false;
+
   loaded: boolean = false;
   imageLoaded: boolean = false;
   imageSrc: string = '';
+  image;
 
   constructor(private fService: FirebaseDatabaseService) {
 
@@ -28,19 +24,41 @@ export class AddMountainComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Speichert Bild in den Storage und in die Datenbank
+   * @param mountain 
+   */
   save(mountain: Mountain){
 
-    this.fService.saveMountain(mountain)
-    .then((data)=>{
-      console.log(data);
-    });
-    console.log(mountain.name);
-    console.log(mountain.height);
+    var date = Date();
+    console.log(this.image);
+
+    if(this.image != undefined){
+      this.fService.pushImageUpload(this.image, mountain.name, date)
+        .then((data)=>{
+           mountain.imgUrl = data.downloadURL;
+           console.log(mountain.imgUrl);
+           this.fService.saveMountain(mountain)
+           .then((data)=>{
+             mountain.name = "";
+             mountain.height = null;
+             mountain.imgUrl = "";
+           });
+        })
+        .catch(e =>{
+          console.log(e);
+        })
+    }
   }
-  
+
+  /**
+   * Bild aus dem Rechner 
+   * @param e 
+   */
   handleInputChange(e) {
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-
+    this.image = e.target.files[0];
+    console.log(this.image);
     var pattern = /image-*/;
     var reader = new FileReader();
 
@@ -63,6 +81,6 @@ export class AddMountainComponent implements OnInit {
 
   handleImageLoad() {
     this.imageLoaded = true;
-}
+  }
 
 }
