@@ -1,6 +1,7 @@
 import { FirebaseDatabaseService } from './../services/firebase.database.service/firebase.database.service';
 import { Mountain } from './../models/mountains/mountain.interface';
 import { Component, OnInit } from '@angular/core';
+import { scan } from 'rxjs/operator/scan';
 
 
 @Component({
@@ -16,6 +17,8 @@ export class AddMountainComponent implements OnInit {
   imageLoaded: boolean = false;
   imageSrc: string = '';
   image;
+  showLoader = false;
+  showPlus = true;
 
   constructor(private fService: FirebaseDatabaseService) {
 
@@ -31,22 +34,32 @@ export class AddMountainComponent implements OnInit {
   save(mountain: Mountain){
 
     var date = Date();
-    console.log(this.image);
+    //var uplaoder = document.getElementById("uploader");
+    var uploader = (<HTMLInputElement>document.getElementById("uploader"));
 
     if(this.image != undefined){
       this.fService.pushImageUpload(this.image, mountain.name, date)
+
         .then((data)=>{
-           mountain.imgUrl = data.downloadURL;
-           console.log(mountain.imgUrl);
-           this.fService.saveMountain(mountain)
-           .then((data)=>{
-             mountain.name = "";
-             mountain.height = null;
-             mountain.imgUrl = "";
-           });
+          this.showLoader = true;
+          var percentage = (data.bytesTransferred / data.totalBytes) * 100;
+
+          console.log("speicher Storage");
+          
+          mountain.imgUrl = data.downloadURL;
+          this.fService.saveMountain(mountain)
+          .then((data)=>{
+            console.log("speicher Datenabnk");
+            mountain.name = "";
+            mountain.height = null;
+            this.imageSrc = "";
+            this.showPlus = true;        
+            this.showLoader = false;
+          });
         })
         .catch(e =>{
           console.log(e);
+          console.log("Fehler")
         })
     }
   }
@@ -56,6 +69,7 @@ export class AddMountainComponent implements OnInit {
    * @param e 
    */
   handleInputChange(e) {
+    this.showPlus = false;
     var file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
     this.image = e.target.files[0];
     console.log(this.image);
